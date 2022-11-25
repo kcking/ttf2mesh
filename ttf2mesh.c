@@ -41,17 +41,24 @@
 #   define _DEFAULT_SOURCE 1
 #   define PATH_SEP '/'
 #   include <dirent.h>
+#   include <malloc.h>
 #elif defined(__WINNT__) || defined(_WIN32) || defined(_WIN64)
 #   define TTF_WINDOWS
 #   define _CRT_SECURE_NO_WARNINGS
 #   define PATH_SEP '\\'
 #   define PATH_MAX MAX_PATH
 #   include <windows.h>
+#   include <malloc.h>
+#elif defined(__APPLE__) && defined(__MACH__)
+#   define TTF_LINUX
+#   define _DEFAULT_SOURCE 1
+#   define PATH_SEP '/'
+#   define PATH_MAX 1024
+#   include <dirent.h>
 #endif
 
 #include "ttf2mesh.h"
 #include <string.h>
-#include <malloc.h>
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
